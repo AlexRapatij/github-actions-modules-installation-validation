@@ -18,19 +18,11 @@ const allowedModules = core.getInput('allowed-modules', { required: true })
     .map(input => input.trim())
     .filter(input => input !== '');
 console.log(allowedVendors, allowedModules);
+console.log(github, github.workspace);
 
-const sshUrl = github.context.payload.repository.ssh_url;
-const commit = core.getInput('commit');
-console.log(sshUrl, commit, github.context.payload.after);
-
-const gitCloneCmd    = `git clone ${sshUrl} tmp`;
-const gitCheckoutCmd    = `cd tmp && git checkout ${commit}`;
-
-// log(gitCloneCmd);
-exec.exec('git clone ' + sshUrl + ' tmp');
-fs.mkdirSync('tmp');
-exec.exec('cd tmp && git checkout ' + commit);
-// log(gitCheckoutCmd);
+// const sshUrl = github.context.payload.repository.ssh_url;
+// const commit = core.getInput('commit');
+// console.log(sshUrl, commit, github.context.payload.after);
 
 fs.readdir(__dirname, function (vendorErr, dir) {
     if (vendorErr) {
