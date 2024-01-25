@@ -1,9 +1,30 @@
 <?php
-echo 'php is live';
+// allowed items
+$allowedVendors = array_map('trim', explode("\n", $_ENV['INPUT_ALLOWED-VENDORS']));
+$allowedModules = array_map('trim', explode("\n", $_ENV['INPUT_ALLOWED-MODULES']));
+
+$notAllowedItems = [];
+
 $dir = '/github/workspace/app/code';
-$files1 = scandir($dir, SCANDIR_SORT_DESCENDING);
+$vendors = scandir($dir);
+foreach ($vendors as $vendor) {
+    if (!is_dir($dir . "/" . $vendor) || in_array($vendor, ['.', '..'])) {
+        continue;
+    }
+    if (in_array($vendor, $allowedVendors)) {
+        continue;
+    }
 
-print_r($files1);
-//var_dump($_ENV);
+    $modules = scandir("{$dir}/{$vendor}");
+    foreach ($modules as $module) {
+        $moduleName = "{$vendor}_{$module}";
+        if (!in_array($moduleName, $allowedModules)) {
+            $notAllowedItems[] = $allowedModules;
+        }
+    }
+}
 
-return 1;
+if (count($notAllowedItems)) {
+    throw new \Exception("Next module(s) installing not allowed in app/code folder: \n" .
+        implode("\n", $notAllowedItems));
+}
