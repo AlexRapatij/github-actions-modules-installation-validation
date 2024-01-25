@@ -1,4 +1,5 @@
 const core = require('@actions/core');
+const github = require('@actions/github');
 const path = require('path');
 const fs = require('fs');
 
@@ -12,9 +13,10 @@ const allowedModules = core.getInput('allowed-modules', { required: true })
     .map(input => input.trim())
     .filter(input => input !== '');
 console.log(allowedVendors, allowedModules);
+console.log(github.context.payload);
 
-const vendorsPath = path.join(__dirname, 'app/code');
-
+const vendorsPath = path.join(github.context.ref, 'app/code');
+core.get
 fs.readdir(vendorsPath, function (vendorErr, vendors) {
     if (vendorErr) {
         return console.log('Unable to scan directory: ' + vendorErr);
