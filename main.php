@@ -19,7 +19,7 @@ foreach ($vendors as $vendor) {
     foreach ($modules as $module) {
         $moduleName = "{$vendor}_{$module}";
         if (!in_array($moduleName, $allowedModules)) {
-            $notAllowedItems[] = $allowedModules;
+            $notAllowedItems[] = $moduleName;
         }
     }
 }
