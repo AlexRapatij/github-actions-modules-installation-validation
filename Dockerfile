@@ -5,6 +5,7 @@ FROM php:8.2.15-zts-bookworm
 COPY main.php /main.php
 
 RUN pwd
+RUN ls -al
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
 ENTRYPOINT ["php", "/main.php"]
