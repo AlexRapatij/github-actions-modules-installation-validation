@@ -2,6 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const path = require('path');
 const fs = require('fs');
+const exec = require('@actions/exec');
 
 function log (message) {
     console.log(message);
@@ -25,10 +26,13 @@ console.log(sshUrl, commit, github.context.payload.after);
 const gitCloneCmd    = `git clone ${sshUrl} tmp`;
 const gitCheckoutCmd    = `cd tmp && git checkout ${commit}`;
 
-log(gitCloneCmd);
-log(gitCheckoutCmd);
+// log(gitCloneCmd);
+exec.exec('git clone ' + sshUrl + ' tmp');
+fs.mkdirSync('tmp');
+exec.exec('cd tmp && git checkout ' + commit);
+// log(gitCheckoutCmd);
 
-fs.readdir(__dirname, function (vendorErr, dir) {
+fs.readdir(path.join(__dirname, 'tmp'), function (vendorErr, dir) {
     if (vendorErr) {
         return console.log('Unable to scan directory: ' + vendorErr);
     }
