@@ -1,6 +1,8 @@
 #!/bin/sh -l
 
+pwd
 ls -al
+
 #read -a array <<< "$1"
 #echo "Hello: $array[0] $array[1]"
 #echo "Hello1 $1"
