@@ -7,12 +7,12 @@ inputs:
     default: |-
       Gene
       GeneSoftware
-      JjCommerce
   allowed-modules:
     description: 'Allowed specific Modules'
     required: true
     default: |-
-      Potato_Zendesk
+      Magento_Catalog
+      Magento_Email
 runs:
   using: 'docker'
   image: "Dockerfile"
