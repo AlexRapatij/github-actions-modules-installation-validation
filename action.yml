@@ -1,0 +1,21 @@
+name: 'Validation of Module installation'
+description: 'Validate whether 3rd party modules are installed by proper way (not in app/code/ folder)'
+inputs:
+  allowed-vendors:
+    description: 'Allowed Module Vendors'
+    required: true
+    default: |-
+      Gene
+      GeneSoftware
+  allowed-modules:
+    description: 'Allowed specific Modules'
+    required: true
+    default: |-
+      Magento_Catalog
+      Magento_Email
+runs:
+  using: 'docker'
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.allowed-vendors }}
+    - ${{ inputs.allowed-modules }}
