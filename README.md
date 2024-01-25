@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Validate installed modules
-        uses: AlexRapatij/github-actions-modules-installation-validation@v1.0.0
+        uses: AlexRapatij/github-actions-modules-installation-validation@v1.0.1
         with:
           allowed-vendors: |-
             Gene
