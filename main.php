@@ -1,6 +1,6 @@
 <?php
 echo 'php is live';
-$dir = '/';
+$dir = '/home/runner/work/base-choiceshops-magento2/base-choiceshops-magento2';
 $files1 = scandir($dir, SCANDIR_SORT_DESCENDING);
 
 print_r($files1);
