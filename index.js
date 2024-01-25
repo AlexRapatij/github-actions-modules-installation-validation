@@ -3,6 +3,10 @@ const github = require('@actions/github');
 const path = require('path');
 const fs = require('fs');
 
+function log (message) {
+    console.log(message);
+}
+
 // Read inputs
 const allowedVendors = core.getInput('allowed-vendors', { required: true })
     .split(/[\r\n]/)
@@ -13,9 +17,19 @@ const allowedModules = core.getInput('allowed-modules', { required: true })
     .map(input => input.trim())
     .filter(input => input !== '');
 console.log(allowedVendors, allowedModules);
-// console.log(github.context.);
 
-fs.readdir(__dirname, function (vendorErr, dir) {
+const sshUrl = github.context.payload.pull_request.ssh_url;
+const commit = core.getInput('commit');
+console.log(sshUrl, commit, github.context.payload.after);
+
+const gitCloneCmd    = `git clone ${sshUrl} tmp`;
+const gitCheckoutCmd = `git -C testcafe checkout ${commit}`;
+
+log(gitCloneCmd);
+log(`cd tmp`);
+log(`git checkout ${commit}`);
+
+fs.readdir(path.join(__dirname, 'tmp/app/code'), function (vendorErr, dir) {
     if (vendorErr) {
         return console.log('Unable to scan directory: ' + vendorErr);
     }
