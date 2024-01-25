@@ -1,5 +1,5 @@
 FROM alpine:3.10
 
-COPY main.sh /main.sh
+COPY main2.sh /main2.sh
 
-ENTRYPOINT ["/main.sh"]
+ENTRYPOINT ["/main2.sh"]
