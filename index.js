@@ -18,12 +18,11 @@ const allowedModules = core.getInput('allowed-modules', { required: true })
     .filter(input => input !== '');
 console.log(allowedVendors, allowedModules);
 
-const sshUrl = github.context.payload.pull_request.ssh_url;
+const sshUrl = github.context.payload.repository.ssh_url;
 const commit = core.getInput('commit');
-console.log(github.context.payload.repository.ssh_url, commit, github.context.payload.after);
+console.log(sshUrl, commit, github.context.payload.after);
 
 const gitCloneCmd    = `git clone ${sshUrl} tmp`;
-const gitCheckoutCmd = `git -C testcafe checkout ${commit}`;
 
 log(gitCloneCmd);
 log(`cd tmp`);
