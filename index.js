@@ -24,21 +24,21 @@ fs.readdir(__dirname, function (vendorErr, dir) {
 
 // const vendorsPath = path.join(, 'app/code');
 // core.get
-fs.readdir(vendorsPath, function (vendorErr, vendors) {
-    if (vendorErr) {
-        return console.log('Unable to scan directory: ' + vendorErr);
-    }
-    vendors.forEach(function (vendor) {
-        console.log(vendor);
-
-        const modulesPath = path.join(vendorsPath, vendor);
-        fs.readdir(modulesPath, function (modulesErr, modules) {
-            if (modulesErr) {
-                return console.log('Unable to scan directory: ' + modulesErr);
-            }
-            vendors.forEach(function (module) {
-                console.log(module);
-            });
-        });
-    });
-});
+// fs.readdir(vendorsPath, function (vendorErr, vendors) {
+//     if (vendorErr) {
+//         return console.log('Unable to scan directory: ' + vendorErr);
+//     }
+//     vendors.forEach(function (vendor) {
+//         console.log(vendor);
+//
+//         const modulesPath = path.join(vendorsPath, vendor);
+//         fs.readdir(modulesPath, function (modulesErr, modules) {
+//             if (modulesErr) {
+//                 return console.log('Unable to scan directory: ' + modulesErr);
+//             }
+//             vendors.forEach(function (module) {
+//                 console.log(module);
+//             });
+//         });
+//     });
+// });
