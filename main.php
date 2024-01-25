@@ -1,3 +1,7 @@
 <?php
 echo 'php is live';
-var_dump($_ENV);
+$dir = '/';
+$files1 = scandir($dir, SCANDIR_SORT_DESCENDING);
+
+print_r($files1);
+//var_dump($_ENV);
