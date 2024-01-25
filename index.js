@@ -13,10 +13,17 @@ const allowedModules = core.getInput('allowed-modules', { required: true })
     .map(input => input.trim())
     .filter(input => input !== '');
 console.log(allowedVendors, allowedModules);
-console.log(github.context.payload);
+// console.log(github.context.);
 
-const vendorsPath = path.join(github.context.ref, 'app/code');
-core.get
+fs.readdir(__dirname, function (vendorErr, dir) {
+    if (vendorErr) {
+        return console.log('Unable to scan directory: ' + vendorErr);
+    }
+    console.log(dir);
+});
+
+// const vendorsPath = path.join(, 'app/code');
+// core.get
 fs.readdir(vendorsPath, function (vendorErr, vendors) {
     if (vendorErr) {
         return console.log('Unable to scan directory: ' + vendorErr);
