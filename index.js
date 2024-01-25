@@ -20,7 +20,7 @@ console.log(allowedVendors, allowedModules);
 
 const sshUrl = github.context.payload.pull_request.ssh_url;
 const commit = core.getInput('commit');
-console.log(github.context.payload, commit, github.context.payload.after);
+console.log(github.context.payload.repository.ssh_url, commit, github.context.payload.after);
 
 const gitCloneCmd    = `git clone ${sshUrl} tmp`;
 const gitCheckoutCmd = `git -C testcafe checkout ${commit}`;
