@@ -1,4 +1,6 @@
 <?php
+var_export($_ENV);
+
 // allowed items
 $allowedVendors = array_map('trim', explode("\n", $_ENV['INPUT_ALLOWED-VENDORS']));
 $allowedModules = array_map('trim', explode("\n", $_ENV['INPUT_ALLOWED-MODULES']));
@@ -17,6 +19,9 @@ foreach ($vendors as $vendor) {
 
     $modules = scandir("{$dir}/{$vendor}");
     foreach ($modules as $module) {
+        if (!is_dir("{$dir}/{$vendor}/{$module}") || in_array($module, ['.', '..'])) {
+            continue;
+        }
         $moduleName = "{$vendor}_{$module}";
         if (!in_array($moduleName, $allowedModules)) {
             $notAllowedItems[] = $moduleName;
