@@ -23,12 +23,12 @@ const commit = core.getInput('commit');
 console.log(sshUrl, commit, github.context.payload.after);
 
 const gitCloneCmd    = `git clone ${sshUrl} tmp`;
+const gitCheckoutCmd    = `cd tmp && git checkout ${commit}`;
 
 log(gitCloneCmd);
-log(`cd tmp`);
-log(`git checkout ${commit}`);
+log(gitCheckoutCmd);
 
-fs.readdir(path.join(__dirname, 'tmp/app/code'), function (vendorErr, dir) {
+fs.readdir(__dirname, function (vendorErr, dir) {
     if (vendorErr) {
         return console.log('Unable to scan directory: ' + vendorErr);
     }
