@@ -1,6 +1,4 @@
 <?php
-var_export($_ENV);
-return;
 // allowed items
 $allowedVendors = array_map('trim', explode("\n", $_ENV['INPUT_ALLOWED-VENDORS']));
 $allowedModules = array_map('trim', explode("\n", $_ENV['INPUT_ALLOWED-MODULES']));

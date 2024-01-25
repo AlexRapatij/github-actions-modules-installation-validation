@@ -19,7 +19,7 @@ const allowedModules = core.getInput('allowed-modules', { required: true })
     .filter(input => input !== '');
 console.log(allowedVendors, allowedModules);
 console.log(github, github.workspace);
-
+core.setFailed(11);
 // const sshUrl = github.context.payload.repository.ssh_url;
 // const commit = core.getInput('commit');
 // console.log(sshUrl, commit, github.context.payload.after);
