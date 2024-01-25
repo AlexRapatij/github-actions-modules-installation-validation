@@ -32,7 +32,7 @@ fs.mkdirSync('tmp');
 exec.exec('cd tmp && git checkout ' + commit);
 // log(gitCheckoutCmd);
 
-fs.readdir(path.join(__dirname, 'tmp'), function (vendorErr, dir) {
+fs.readdir(__dirname, function (vendorErr, dir) {
     if (vendorErr) {
         return console.log('Unable to scan directory: ' + vendorErr);
     }
