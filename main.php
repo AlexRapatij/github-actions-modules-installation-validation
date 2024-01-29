@@ -3,11 +3,10 @@
 $allowedVendors = array_map('trim', explode("\n", $_ENV['INPUT_ALLOWED-VENDORS']));
 $allowedModules = array_map('trim', explode("\n", $_ENV['INPUT_ALLOWED-MODULES']));
 // app/code path
-$appCodePath = array_map('trim', explode("\n", $_ENV['INPUT_APP-CODE-FOLDER']));
+$appCodePath = trim(trim($_ENV['INPUT_APP-CODE-FOLDER']), '/');
 if (empty($appCodePath)) {
     $appCodePath = 'app/code';
 }
-$appCodePath = trim($appCodePath, '/');
 
 $notAllowedItems = [];
 
