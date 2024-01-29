@@ -2,10 +2,16 @@
 // allowed items
 $allowedVendors = array_map('trim', explode("\n", $_ENV['INPUT_ALLOWED-VENDORS']));
 $allowedModules = array_map('trim', explode("\n", $_ENV['INPUT_ALLOWED-MODULES']));
+// app/code path
+$appCodePath = array_map('trim', explode("\n", $_ENV['INPUT_APP-CODE-FOLDER']));
+if (empty($appCodePath)) {
+    $appCodePath = 'app/code';
+}
+$appCodePath = trim($appCodePath, '/');
 
 $notAllowedItems = [];
 
-$dir = '/github/workspace/app/code';
+$dir = '/github/workspace/' . $appCodePath;
 $vendors = scandir($dir);
 foreach ($vendors as $vendor) {
     if (!is_dir($dir . "/" . $vendor) || in_array($vendor, ['.', '..'])) {

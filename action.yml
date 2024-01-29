@@ -1,6 +1,10 @@
 name: 'Validation of Module installation'
 description: 'Validate whether 3rd party modules are installed by proper way (not in app/code/ folder)'
 inputs:
+  app-code-folder:
+    description: 'app/code path'
+    required: true
+    default: app/code
   allowed-vendors:
     description: 'Allowed Module Vendors'
     required: true
